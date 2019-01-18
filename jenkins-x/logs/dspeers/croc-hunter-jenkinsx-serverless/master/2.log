@@ -1,6 +1,116 @@
 Step: build-step-credential-initializer:
 
+{"level":"warn","ts":1547839926.7554045,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1547839926.7558465,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 Step: build-step-git-source-0:
 
+{"level":"warn","ts":1547839929.1907806,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1547839929.5864882,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/dspeers/croc-hunter-jenkinsx-serverless.git\" @ \"ad708a8318ab19f5bddbc974ed98674041a3e1dd\" in path \"/workspace\""}
 Step: build-step-jenkins:
 
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  17.822 [id=31]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
+[Pipeline] node
+Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins7786036354983441515test/workspace/job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI Build and push snapshot)
+Stage "CI Build and push snapshot" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Release)
+[Pipeline] dir
+Running in /home/jenkins/go/src/github.com/carlossg/croc-hunter-jenkinsx-serverless
+[Pipeline] {
+[Pipeline] git
+Cloning the remote Git repository
+Cloning repository https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git
+ > git init /home/jenkins/go/src/github.com/carlossg/croc-hunter-jenkinsx-serverless # timeout=10
+Fetching upstream changes from https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git # timeout=10
+Fetching upstream changes from https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git
+ > git fetch --tags --progress https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision a739eae88473fd1430e91f4fe6b04d7d41b88b13 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a739eae88473fd1430e91f4fe6b04d7d41b88b13
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master a739eae88473fd1430e91f4fe6b04d7d41b88b13
+Commit message: "Merge pull request #35 from carlossg/region-istio"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] dir
+Running in /home/jenkins/go/src/github.com/carlossg/croc-hunter-jenkinsx-serverless/charts/croc-hunter-jenkinsx
+[Pipeline] {
+[Pipeline] sh
++ git config --global credential.helper store
+[Pipeline] sh
++ jx step validate --min-jx-version 1.1.73
+[Pipeline] sh
++ jx step git credentials
+Generated Git credentials file /home/jenkins/git/credentials
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] dir
+Running in /home/jenkins/go/src/github.com/carlossg/croc-hunter-jenkinsx-serverless
+[Pipeline] {
+[Pipeline] sh
++ jx-release-version
++ echo 0.0.97
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] dir
+Running in /home/jenkins/go/src/github.com/carlossg/croc-hunter-jenkinsx-serverless/charts/croc-hunter-jenkinsx
+[Pipeline] {
+[Pipeline] sh
++ make tag
+sed -i -e "s/version:.*/version: 0.0.97/" Chart.yaml
+sed -i -e "s|repository: .*|repository: 10.51.252.175:5000\/carlossg\/croc-hunter-jenkinsx|" values.yaml
+sed -i -e "s/tag: .*/tag: 0.0.97/" values.yaml
+git add --all
+git commit -m "release 0.0.97" --allow-empty # if first release then no verion update is performed
+[master b4214b5] release 0.0.97
+ 5 files changed, 10 insertions(+), 3 deletions(-)
+ create mode 100644 VERSION
+ create mode 100644 charts/croc-hunter-jenkinsx@tmp/durable-24c5ef26/jenkins-log.txt
+ create mode 100644 charts/croc-hunter-jenkinsx@tmp/durable-24c5ef26/script.sh
+git tag -fa v0.0.97 -m "Release version 0.0.97"
+git push origin v0.0.97
+remote: Permission to carlossg/croc-hunter-jenkinsx-serverless.git denied to dspeers.
+fatal: unable to access 'https://github.com/carlossg/croc-hunter-jenkinsx-serverless.git/': The requested URL returned error: 403
+Makefile:38: recipe for target 'tag' failed
+make: *** [tag] Error 128
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+Stage "Promote to Environments" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
