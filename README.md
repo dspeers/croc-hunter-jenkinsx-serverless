@@ -1,6 +1,6 @@
 # Croc Hunter - The game!
 
-For those that have dreamt to hunt crocs
+For those that have dreamt to hunt crocs with lasers
 
 # Usage
 
